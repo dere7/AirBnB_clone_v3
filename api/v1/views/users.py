@@ -39,8 +39,10 @@ def new_user():
     """creates a user objects"""
     if not request.json:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
-    if 'name' not in request.json:
-        return make_response(jsonify({"error": "Missing name"}), 400)
+    if 'email' not in request.json:
+        return make_response(jsonify({"error": "Missing email"}), 400)
+    if 'password' not in request.json:
+        return make_response(jsonify({"error": "Missing password"}), 400)
     user = User(**request.get_json())
     if user is None:
         abort(404)
@@ -55,7 +57,11 @@ def update_user(user_id):
         abort(404)
     if not request.json:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
-    if 'name' in request.json:
-        user.name = request.get_json()['name']
-        storage.save()
+    if 'password' in request.json:
+        user.password = request.get_json()['password']
+    if 'first_name' in request.json:
+        user.first_name = request.get_json()['first_name']
+    if 'last_name' in request.json:
+        user.last_name = request.get_json()['last_name']
+    user.save()
     return jsonify(user.to_dict())
