@@ -46,6 +46,7 @@ def new_user():
     user = User(**request.get_json())
     if user is None:
         abort(404)
+    user.save()
     return make_response(jsonify(user.to_dict()), 201)
 
 
