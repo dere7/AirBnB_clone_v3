@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Contains status, stats routes"""
+"""Contains all REST actions for State Objects"""
 from flask import abort, jsonify, make_response, request
 from api.v1.views import app_views
 from models.state import State
