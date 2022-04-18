@@ -35,7 +35,7 @@ class FileStorage:
         return self.__objects
 
     def get(self, cls, id):
-        """retrieves one object"""
+        """retrieves one object with specified class and id"""
         objs = self.all(cls)
         key = cls.__name__ + "." + id
         return objs.get(key)
@@ -69,7 +69,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """delete obj from __objects if it’s inside"""
+        """delete obj from __objects if it's inside"""
         if obj is not None:
             key = obj.__class__.__name__ + '.' + obj.id
             if key in self.__objects:
