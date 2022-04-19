@@ -77,7 +77,7 @@ class TestDBStorage(unittest.TestCase):
 
     def test_get_none(self):
         """test for get for none existing id"""
-        state = storage.get(State, uuid.uuid4())
+        state = storage.get(State, str(uuid.uuid4()))
         self.assertIsNone(state)
 
     def test_count(self):
